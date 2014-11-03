@@ -10,6 +10,9 @@
 		472FDE9A19DA4B68000C0864 /* Default-1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 472FDE9919DA4B68000C0864 /* Default-1136.png */; };
 		47A333FF19D8F34A00F60031 /* Default-1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 47A333FD19D8F34A00F60031 /* Default-1334.png */; };
 		47A3340019D8F34A00F60031 /* Default-2208.png in Resources */ = {isa = PBXBuildFile; fileRef = 47A333FE19D8F34A00F60031 /* Default-2208.png */; };
+		493CB85C1A077FE500A47D24 /* MDRadialProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 493CB8571A077FE500A47D24 /* MDRadialProgressLabel.m */; };
+		493CB85D1A077FE500A47D24 /* MDRadialProgressTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 493CB8591A077FE500A47D24 /* MDRadialProgressTheme.m */; };
+		493CB85E1A077FE500A47D24 /* MDRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493CB85B1A077FE500A47D24 /* MDRadialProgressView.m */; };
 		7F9A78FF18E754A7000CAA69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9A78FE18E754A7000CAA69 /* Foundation.framework */; };
 		7F9A790118E754A7000CAA69 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9A790018E754A7000CAA69 /* CoreGraphics.framework */; };
 		7F9A790318E754A7000CAA69 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9A790218E754A7000CAA69 /* UIKit.framework */; };
@@ -48,6 +51,12 @@
 		472FDE9919DA4B68000C0864 /* Default-1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-1136.png"; sourceTree = "<group>"; };
 		47A333FD19D8F34A00F60031 /* Default-1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-1334.png"; sourceTree = "<group>"; };
 		47A333FE19D8F34A00F60031 /* Default-2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-2208.png"; sourceTree = "<group>"; };
+		493CB8561A077FE500A47D24 /* MDRadialProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressLabel.h; sourceTree = "<group>"; };
+		493CB8571A077FE500A47D24 /* MDRadialProgressLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressLabel.m; sourceTree = "<group>"; };
+		493CB8581A077FE500A47D24 /* MDRadialProgressTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressTheme.h; sourceTree = "<group>"; };
+		493CB8591A077FE500A47D24 /* MDRadialProgressTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressTheme.m; sourceTree = "<group>"; };
+		493CB85A1A077FE500A47D24 /* MDRadialProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressView.h; sourceTree = "<group>"; };
+		493CB85B1A077FE500A47D24 /* MDRadialProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressView.m; sourceTree = "<group>"; };
 		7F9A78FB18E754A7000CAA69 /* JTSImageVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTSImageVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9A78FE18E754A7000CAA69 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7F9A790018E754A7000CAA69 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -191,6 +200,12 @@
 		7F9A793318E754D9000CAA69 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				493CB8561A077FE500A47D24 /* MDRadialProgressLabel.h */,
+				493CB8571A077FE500A47D24 /* MDRadialProgressLabel.m */,
+				493CB8581A077FE500A47D24 /* MDRadialProgressTheme.h */,
+				493CB8591A077FE500A47D24 /* MDRadialProgressTheme.m */,
+				493CB85A1A077FE500A47D24 /* MDRadialProgressView.h */,
+				493CB85B1A077FE500A47D24 /* MDRadialProgressView.m */,
 				7F9A793418E75541000CAA69 /* JTSImageViewController.h */,
 				7F9A793518E75541000CAA69 /* JTSImageViewController.m */,
 				7F9A793718E75558000CAA69 /* JTSImageInfo.h */,
@@ -311,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493CB85D1A077FE500A47D24 /* MDRadialProgressTheme.m in Sources */,
 				7F9A793918E75558000CAA69 /* JTSImageInfo.m in Sources */,
 				7FE95B4E18EE0E8100F18370 /* UIApplication+JTSImageViewController.m in Sources */,
 				7F9A791518E754A7000CAA69 /* JTSViewController.m in Sources */,
@@ -318,8 +334,10 @@
 				7F9A790F18E754A7000CAA69 /* JTSAppDelegate.m in Sources */,
 				7F9A794218E75712000CAA69 /* UIImage+JTSImageEffects.m in Sources */,
 				7F9A793F18E755F6000CAA69 /* JTSAnimatedGIFUtility.m in Sources */,
+				493CB85C1A077FE500A47D24 /* MDRadialProgressLabel.m in Sources */,
 				7F9A793618E75541000CAA69 /* JTSImageViewController.m in Sources */,
 				7F9A790B18E754A7000CAA69 /* main.m in Sources */,
+				493CB85E1A077FE500A47D24 /* MDRadialProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

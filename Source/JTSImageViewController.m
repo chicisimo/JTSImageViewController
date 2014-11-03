@@ -7,10 +7,12 @@
 //
 
 #import "JTSImageViewController.h"
-
 #import "JTSSimpleImageDownloader.h"
 #import "UIImage+JTSImageEffects.h"
 #import "UIApplication+JTSImageViewController.h"
+#import "MDRadialProgressView.h"
+#import "MDRadialProgressTheme.h"
+#import "MDRadialProgressLabel.h"
 
 ///--------------------------------------------------------------------------------------------------------------------
 /// Definitions
@@ -82,6 +84,7 @@ typedef struct {
 
 // Views
 @property (strong, nonatomic) UIView *progressContainer;
+@property (strong, nonatomic) MDRadialProgressView *progressView;
 @property (strong, nonatomic) UIView *outerContainerForScrollView;
 @property (strong, nonatomic) UIView *snapshotView;
 @property (strong, nonatomic) UIView *blurredSnapshotView;
@@ -89,8 +92,6 @@ typedef struct {
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UITextView *textView;
-@property (strong, nonatomic) UIProgressView *progressView;
-@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 // Gesture Recognizers
 @property (strong, nonatomic) UITapGestureRecognizer *singleTapperPhoto;
@@ -459,20 +460,23 @@ typedef struct {
     
     self.progressContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 128.0f, 128.0f)];
     [self.view addSubview:self.progressContainer];
-    self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    self.progressView.progress = 0;
-    self.progressView.tintColor = [UIColor whiteColor];
-    self.progressView.trackTintColor = [UIColor darkGrayColor];
+    self.progressView = [[MDRadialProgressView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+    self.progressView.progressTotal = 100;
+    self.progressView.progressCounter = 0;
+    self.progressView.theme.drawIncompleteArcIfNoProgress = YES;
+    self.progressView.theme.thickness = 15;
+    self.progressView.theme.incompletedColor = [UIColor colorWithRed:177.0/255.0 green:179.0/255.0 blue:181.0/255.0 alpha:1];
+    self.progressView.theme.completedColor = [UIColor whiteColor];
+    self.progressView.theme.sliceDividerHidden = YES;
+    self.progressView.label.hidden = YES;
+    [self.progressContainer addSubview:self.progressView];
+
     CGRect progressFrame = self.progressView.frame;
     progressFrame.size.width = 128.0f;
     self.progressView.frame = progressFrame;
     self.progressView.center = CGPointMake(64.0f, 64.0f);
     self.progressView.alpha = 0;
     [self.progressContainer addSubview:self.progressView];
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.spinner.center = CGPointMake(64.0f, 64.0f);
-    [self.spinner startAnimating];
-    [self.progressContainer addSubview:self.spinner];
     self.progressContainer.alpha = 0;
     
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.scrollView];
@@ -1875,12 +1879,11 @@ typedef struct {
     CGFloat bytesExpected = self.imageDownloadDataTask.countOfBytesExpectedToReceive;
     if (bytesExpected > 0 && _flags.imageIsBeingReadFromDisk == NO) {
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear animations:^{
-            self.spinner.alpha = 0;
             self.progressView.alpha = 1;
         } completion:nil];
         progress = self.imageDownloadDataTask.countOfBytesReceived / bytesExpected;
     }
-    self.progressView.progress = progress;
+    self.progressView.progressCounter = (NSInteger)(progress*100);
 }
 
 #pragma mark - UIResponder

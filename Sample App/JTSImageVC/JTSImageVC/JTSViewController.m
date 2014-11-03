@@ -34,7 +34,7 @@
     
     // Create image info
     JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-    imageInfo.image = self.bigImageButton.image;
+    imageInfo.imageURL = [NSURL URLWithString:@"http://appcdn.chicisimo.com/files/2014/11/sheinside-white-black.jpg"];
     imageInfo.referenceRect = self.bigImageButton.frame;
     imageInfo.referenceView = self.bigImageButton.superview;
     imageInfo.referenceContentMode = self.bigImageButton.contentMode;
@@ -44,7 +44,7 @@
     JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
                                            initWithImageInfo:imageInfo
                                            mode:JTSImageViewControllerMode_Image
-                                           backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmed];
+                                           backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
     
     // Present the view controller.
     [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
