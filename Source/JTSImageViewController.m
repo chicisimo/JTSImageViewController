@@ -14,6 +14,14 @@
 #import "MDRadialProgressTheme.h"
 #import "MDRadialProgressLabel.h"
 
+CG_INLINE CGFLOAT_TYPE JTSImageFloatAbs(CGFLOAT_TYPE aFloat) {
+#if CGFLOAT_IS_DOUBLE
+    return fabs(aFloat);
+#else
+    return fabsf(aFloat);
+#endif
+}
+
 ///--------------------------------------------------------------------------------------------------------------------
 /// Definitions
 ///--------------------------------------------------------------------------------------------------------------------
@@ -202,7 +210,7 @@ typedef struct {
 
 #pragma mark - UIViewController
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     
     /*
      iOS 8 changes the behavior of autorotation when presenting a
@@ -551,6 +559,7 @@ typedef struct {
     [self.view addGestureRecognizer:self.longPresserPhoto];
     
     self.panRecognizer = [[UIPanGestureRecognizer alloc] init];
+    self.panRecognizer.maximumNumberOfTouches = 1;
     [self.panRecognizer addTarget:self action:@selector(dismissingPanGestureRecognizerPanned:)];
     self.panRecognizer.delegate = self;
     [self.scrollView addGestureRecognizer:self.panRecognizer];
@@ -1598,7 +1607,7 @@ typedef struct {
     }
     
     CGPoint velocity = [scrollView.panGestureRecognizer velocityInView:scrollView.panGestureRecognizer.view];
-    if (scrollView.zoomScale == 1 && (fabsf(velocity.x) > 1600 || fabsf(velocity.y) > 1600 ) ) {
+    if (scrollView.zoomScale == 1 && (JTSImageFloatAbs(velocity.x) > 1600 || JTSImageFloatAbs(velocity.y) > 1600 ) ) {
         [self dismiss:YES];
     }
 }
